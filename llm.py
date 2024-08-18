@@ -2,6 +2,7 @@ from langchain_openai import AzureChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 from langchain.schema.runnable import RunnableLambda
 from langchain.schema.output_parser import StrOutputParser
+
 from dotenv import load_dotenv
 import json
 
@@ -22,6 +23,47 @@ itinerary_messages = [("system", """
     Your Goal: Ensure that the generated itinerary is highly customized, thoughtful, and aligns with the user's travel goals. Mention what to eat , where to find those , suggest hotels or accomodation, suggest agency that might help in activities. 
     Result: Return a JSON array of maps here the title is key and the whole day plan is the value
 
+    Here is an estimated price range for the treks you listed:
+
+    1-Day Treks:
+    Bandipur to Ramkot Hike: Approximately NPR 3,700-4,900 per person for a guided tour, including transportation from Kathmandu.
+    Gorkha Durbar Hike: Similar to Bandipur, the cost for a day hike, including transportation, could range from NPR 3,000-5,000.
+    Chitwan National Park Jungle Walk: Prices vary depending on the package but typically range from NPR 2,000-4,000 per person.
+    Lumbini Heritage Site Walk: Around NPR 2,500-4,000 per person, depending on guide services and transportation.
+    2-Day Treks:
+    Nagarkot to Dhulikhel Hike: Estimated cost is around NPR 8,000-10,000 per person, including accommodation and meals.
+    Bhaktapur to Panauti Hike: This trek might cost around NPR 7,000-9,000 per person.
+    Dhulikhel to Namobuddha Hike: Costs are similar, ranging from NPR 7,000-10,000 per person.
+    Multi-Day Treks:
+    Everest Base Camp Trek (12-14 days): The cost is typically around $1,000-3,000 USD depending on services included.
+    Gokyo Lakes Trek (10-12 days): Approximately $1,200-2,500 USD.
+    Three Passes Trek (17-21 days): Estimated at $1,500-3,500 USD.
+    Annapurna Base Camp Trek (7-10 days): Around $800-1,500 USD.
+    Annapurna Circuit Trek (14-21 days): Estimated between $1,000-2,500 USD.
+    Mardi Himal Trek (5-7 days): Costs around $500-1,000 USD.
+    Langtang Valley Trek (5-7 days): Estimated at $500-1,200 USD.
+    Gosaikunda Trek (6-8 days): Around $600-1,300 USD.
+    Helambu Trek (5-7 days): Estimated at $500-1,000 USD.
+    Manaslu Circuit Trek (12-14 days): Costs range from $1,200-2,500 USD.
+    Tsum Valley Trek (10-12 days): Around $1,200-2,000 USD.
+    Upper Mustang Trek (10-14 days): Costs between $1,500-3,000 USD.
+    Lower Mustang Trek (5-7 days): Estimated at $700-1,500 USD.
+    Upper Dolpo Trek (18-21 days): Costs range from $2,500-4,500 USD.
+    Lower Dolpo Trek (10-12 days): Estimated at $1,500-3,000 USD.
+    Kanchenjunga Base Camp Trek (18-21 days): Around $2,500-4,000 USD.
+    Kanchenjunga North Base Camp Trek (15-18 days): Similar costs, around $2,000-3,500 USD.
+    Rara Lake Trek (7-10 days): Approximately $800-1,500 USD.
+
+    Average cost of hotel in Nepal is about Rs 2500 per night
+
+    Average cost of special activities:
+    White Water Rafting: Costs range from $50-$150 per person, depending on the river and duration​.
+    Paragliding in Pokhara: Around $80-$120 per person for a 30-minute flight.
+    Jungle Safari in Chitwan National Park: Approximately $100-$150 per person for a full-day experience.
+    Mountain Flights: Costs range from $200-$300 per person for a scenic flight over the Himalayas.
+    Bungee Jumping: Approximately $80-$120 per jump.
+    Helicopter Tour: Costs vary significantly based on the destination. For example, an Everest Base Camp helicopter tour can range from $1,200-$2,500 per person, while other destinations like Annapurna or Langtang can be slightly lower.
+
     """),
                       ("human", """
             **My Preferences:**
@@ -30,7 +72,7 @@ itinerary_messages = [("system", """
             - **Country Of Origin:** {country_of_origin}
             - **Occupation:** {occupation}
             - **Main Purpose of Visit:** {main_purpose_of_visit}
-            - **Travel Budget:** Nepali Rupees{travel_budget}
+            - **Travel Budget:** {travel_budget} of {country_of_origin}'s currency
             - **Duration Of Visit:** {duration_of_visit}
             - **Food Preferences:** {food_preferences}
             - **Preferred Attractions:** {preferred_attractions}
