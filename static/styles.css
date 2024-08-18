@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Kalivo";
+  src: url(font/Kalivo-Regular.ttf);
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url(font/Montserrat-Bold.ttf);
+  font-weight: 700;
+  font-style: normal;
+}
+
+:root {
+  --dark-color: #181300;
+  --light-color: #f4f3cc;
+  --accent-color: #2f4858;
+}
+
+.font-montserrat {
+  font-family: "Montserrat";
+}
+
+.font-kalivo {
+  font-family: "Kalivo";
+}
+
+.text-dark {
+  color: var(--dark-color);
+}
+.text-light {
+  color: var(--light-color);
+}
+
+.bg-dark {
+  background-color: var(--dark-color);
+}
+.bg-light {
+  background-color: var(--light-color);
+}
+.text-accent {
+  color: var(--accent-color);
+}
+
+/* Styles Start Here */
+
+.bg-wrapper {
+  background-image: url(img/phewa.webp);
+  background-size: cover;
+}
+
+.img-tiger {
+  height: 100%;
+  width: 70%;
+  background-image: url(img/tiger.jpg);
+  background-size: cover;
+}
+
+.img-tiger div {
+  height: 100%;
+  width: 100%;
+  opacity: 0.5;
+  background-color: #000;
+}

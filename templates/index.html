@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NepalRover.io::Home</title>
+    <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', path='/img/icon.png') }}">
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  </head>
+  <body>
+    <section  class="bg-wrapper h-screen w-screen">
+      <div class="h-full w-full bg px-12 py-8 bg-black/50">
+        <div class="flex flex-col h-full w-full justify-center gap-8">
+          <div class="h-32 flex items-center" >
+            <h2 class="text-9xl font-kalivo text-light">NepalRover.ai</h2>
+          </div>
+          <div class="flex items-center w-2/3">
+            <h3 class="text-5xl font-kalivo font-medium text-light">
+             Go beyond the guidebook - Explore Nepal with NepalRover.ai
+            </h3>
+          </div>
+          <div class="h-20 flex items-center">
+            <button type="button" class="text-dark bg-light hover:scale-90 duration-75 focus:outline-none  rounded-lg text-sm font-montserrat font-bold  px-12 py-4 text-center inline-flex items-center me-2 mb-2">
+               <a href="{{ url_for("create_itinerary") }}">Get Customized Travel Plan</a> 
+              </button>
+          </div>
+        </div>
+      </div>  
+    </section>
+  </body>
+</html>

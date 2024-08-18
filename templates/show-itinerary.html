@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NepalRover.io::Itinerary Plan</title>
+    <link href="{{ url_for('static', path='/plan.css') }}" rel="stylesheet" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{{ url_for('static', path='/img/icon.png') }}"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="text-dark bg-gray-200">
+    <header class="px-10 mt-2 fixed">
+      <h1 class="font-kalivo text-3xl">NepalRover.io</h1>
+    </header>
+    <section class="w-[50%] mx-auto py-4 mb-20">
+      <h1 class="font-kalivo text-5xl text-center">
+        Your Customized Travel Plan
+      </h1>
+      <section class="mt-4">
+        <h2 class="font-kalivo text-4xl text-center text-dark mb-4">
+          Your Itinerary:
+        </h2>
+        <article class="flex flex-col gap-4">
+          {% for item in it %} {% for day, details in item.items() %}
+          <div class="flex flex-col gap-2">
+            <h3 class="font-kalivo text-3xl">{{ day }}:</h3>
+            <p class="garamond-semibold text-xl">{{ details }}</p>
+          </div>
+          {% endfor %} {% endfor %}
+        </article>
+      </section>
+
+      <hr
+        class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"
+      />
+
+      <section>
+        <h2 class="font-kalivo text-4xl text-center text-dark mb-4">
+          Basic Guidelines:
+        </h2>
+        <ul class="flex flex-col gap-4 space-y-1 list-disc list-inside">
+          {% for guideline in gl['Basic Guidelines'] %}
+          <li class="garamond-semibold text-xl">{{ guideline }}</li>
+          {% endfor %}
+        </ul>
+      </section>
+
+      <hr
+        class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"
+      />
+
+      <section class="mt-4">
+        <h2 class="font-kalivo text-4xl text-center text-dark mb-4">
+          Emergency Contacts:
+        </h2>
+        <article class="flex flex-col gap-4">
+          {% for contact, number in gl['Emergency Contacts'].items() %}
+          <div class="flex gap-2">
+            <h3 class="font-kalivo text-4xl">{{ contact }}:</h3>
+            <p class="font-kalivo text-3xl">{{ number }}</p>
+          </div>
+          {% endfor %}
+        </article>
+      </section>
+    </section>
+  </body>
+</html>
